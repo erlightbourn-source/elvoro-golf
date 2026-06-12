@@ -1,0 +1,6 @@
+# Editor / agent tooling
+.claude/
+
+# OS cruft
+.DS_Store
+Thumbs.db

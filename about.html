@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Elvoro Golf</title>
+  <meta name="description" content="Why Elvoro exists. A founder's note on restraint, fit, and building golf apparel worth keeping." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <a href="index.html" class="brand" aria-label="Elvoro Golf home">
+      <svg class="mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <circle cx="16" cy="16" r="14.5" stroke="currentColor" stroke-width="1.2" opacity="0.55"/>
+        <path d="M11 10h10M11 16h7.5M11 22h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <span>Elvoro<span class="tm">™</span></span>
+    </a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="nav" aria-label="Primary">
+      <a class="nav-link" href="shop.html">Shop</a>
+      <a class="nav-link" href="about.html" aria-current="page">About</a>
+      <a class="nav-link" href="contact.html">Contact</a>
+      <a class="nav-link nav-cta" href="shop.html">Shop the Drop</a>
+    </nav>
+  </header>
+
+  <!-- ============ PAGE HEAD ============ -->
+  <section class="page-head">
+    <div class="wrap">
+      <p class="eyebrow reveal">Our Story</p>
+      <h1 class="display reveal" style="font-size:clamp(2.6rem,7vw,5rem);margin-top:0.6rem;max-width:18ch">Built on what we couldn't find.</h1>
+    </div>
+  </section>
+
+  <!-- ============ FOUNDER SPLIT ============ -->
+  <section class="split reverse">
+    <div class="split-media">
+      <!-- PHOTO SLOT: founder portrait, natural light, on course or clubhouse -->
+      <span class="ph-note">Founder portrait</span>
+    </div>
+    <div class="split-body">
+      <div class="stack-md reveal" style="max-width:48ch">
+        <p class="eyebrow">A Note From the Founder</p>
+        <p class="serif-quote">"I wanted a polo I didn't have to think about — that looked right walking in for lunch and felt right on the back nine. I couldn't find it. So we made it."</p>
+        <p class="lede">Most golf apparel asks you to choose. Performance or polish. Loud or forgettable. Elvoro is the refusal to choose — clean menswear lines, real performance fabric, and not a logo in sight.</p>
+        <p style="color:var(--muted)">We kept the first collection deliberately small. Three polos, each one we'd reach for first. We'd rather make a few things properly than a lot of things to fill a rack.</p>
+        <p style="font-family:var(--serif);font-size:1.4rem;color:var(--navy)">— The Elvoro Founder</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PRINCIPLES ============ -->
+  <section class="section wrap">
+    <div class="section-head">
+      <div class="stack-sm reveal">
+        <p class="eyebrow">What We Hold To</p>
+        <h2 class="section-title">Three principles. No exceptions.</h2>
+      </div>
+    </div>
+    <div class="product-grid" style="grid-template-columns:repeat(3,1fr)">
+      <div class="reveal stack-sm">
+        <p class="serif-quote" style="font-size:2.6rem;color:var(--olive)">01</p>
+        <h3>Restraint over flash</h3>
+        <p style="color:var(--muted)">No oversized logos, no neon, no noise. Confidence doesn't need to announce itself.</p>
+      </div>
+      <div class="reveal stack-sm">
+        <p class="serif-quote" style="font-size:2.6rem;color:var(--olive)">02</p>
+        <h3>Fit you forget</h3>
+        <p style="color:var(--muted)">Tailored, never tight. Cut to move through the swing and sit clean at rest.</p>
+      </div>
+      <div class="reveal stack-sm">
+        <p class="serif-quote" style="font-size:2.6rem;color:var(--olive)">03</p>
+        <h3>Made to keep</h3>
+        <p style="color:var(--muted)">Fabric and construction chosen to look right for seasons, not a single drop.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ QUOTE BAND ============ -->
+  <section class="split">
+    <div class="split-media">
+      <!-- PHOTO SLOT: wide on-course lifestyle -->
+      <span class="ph-note">On course — wide, natural light</span>
+    </div>
+    <div class="split-body on-stone">
+      <div class="reveal" style="max-width:40ch">
+        <p class="serif-quote">Right on the course. Right at the clubhouse. The same piece, wherever the day goes.</p>
+        <a href="shop.html" class="link-underline" style="margin-top:2rem">See the collection <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EMAIL CAPTURE ============ -->
+  <section class="section capture">
+    <div class="wrap center" style="display:flex;flex-direction:column;align-items:center">
+      <p class="eyebrow on-dark reveal">The List</p>
+      <h2 class="section-title reveal" style="margin-top:0.6rem;max-width:18ch">Follow the build.</h2>
+      <p class="lede reveal" style="margin-top:1rem">Early access, restocks, and the occasional note from the course.</p>
+      <form class="reveal" data-capture novalidate>
+        <div class="field-row">
+          <input type="email" name="email" placeholder="Email address" aria-label="Email address" required />
+          <button type="submit">Join</button>
+        </div>
+        <p class="form-success" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="brand"><span>Elvoro<span class="tm">™</span></span></a>
+          <p>Elevated performance golf apparel. Restraint over flash — on the course and beyond.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <a href="shop.html">The Collection</a>
+          <a href="shop.html">The Meridian Polo</a>
+          <a href="shop.html">The Fairway Polo</a>
+          <a href="shop.html">The Clubhouse Polo</a>
+        </div>
+        <div class="footer-col">
+          <h4>Brand</h4>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+          <a href="coming-soon.html">Pre-launch</a>
+        </div>
+        <div class="footer-col">
+          <h4>Support</h4>
+          <a href="policies.html#shipping">Shipping</a>
+          <a href="policies.html#returns">Returns</a>
+          <a href="policies.html#privacy">Privacy</a>
+          <a href="policies.html#terms">Terms</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span data-year>2026</span> Elvoro Golf™. All rights reserved.</span>
+        <div class="legal-links">
+          <a href="policies.html#privacy">Privacy</a>
+          <a href="policies.html#terms">Terms</a>
+          <a href="policies.html#returns">Returns</a>
+          <a href="policies.html#shipping">Shipping</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/site.js"></script>
+</body>
+</html>
