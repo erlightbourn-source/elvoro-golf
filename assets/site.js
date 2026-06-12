@@ -70,11 +70,15 @@
       if (email && !email.checkValidity()) { email.reportValidity(); return; }
       if (btn) btn.disabled = true;
       if (note) note.textContent = "Adding you to the list…";
-      sendForm({
+      var payload = {
         email: email.value,
-        _subject: "Elvoro Golf — new mailing list signup",
+        _subject: form.dataset.product
+          ? "Elvoro Golf — notify request: " + form.dataset.product
+          : "Elvoro Golf — new mailing list signup",
         _template: "table"
-      }).then(function () {
+      };
+      if (form.dataset.product) payload.product = form.dataset.product;
+      sendForm(payload).then(function () {
         if (note) note.textContent = "Thank you — you're on the list. We'll be in touch.";
         form.reset();
       }).catch(function () {
