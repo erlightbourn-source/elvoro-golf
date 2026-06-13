@@ -123,6 +123,20 @@
     });
   });
 
+  /* ---- Hero video: fade in once it can render, only if motion is allowed ---- */
+  var heroVideo = document.querySelector(".hero-video");
+  if (heroVideo) {
+    var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduceMotion) {
+      heroVideo.removeAttribute("autoplay");
+      heroVideo.pause && heroVideo.pause();
+    } else {
+      var reveal = function () { heroVideo.classList.add("is-ready"); };
+      if (heroVideo.readyState >= 2) reveal();
+      else heroVideo.addEventListener("loadeddata", reveal, { once: true });
+    }
+  }
+
   /* ---- Footer year ---- */
   document.querySelectorAll("[data-year]").forEach(function (el) {
     el.textContent = new Date().getFullYear();

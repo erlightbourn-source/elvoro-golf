@@ -46,6 +46,11 @@
   <section class="hero">
     <div class="hero-media">
       <img fetchpriority="high" src="assets/hero.jpg" alt="A golfer in a forest-green Elvoro polo walking the course at golden hour" />
+      <!-- Muted, looping ambient film. Poster is the matching still, so there's no pop;
+           falls back to the image on slow connections or prefers-reduced-motion. -->
+      <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="assets/hero.jpg" aria-hidden="true">
+        <source src="assets/hero.mp4" type="video/mp4" />
+      </video>
     </div>
     <div class="hero-inner wrap">
       <p class="eyebrow on-dark reveal">Drop One — Performance Polos</p>
