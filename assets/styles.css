@@ -506,8 +506,8 @@ body.nav-open .announce { display: none; }
   background: var(--navy-deep); box-shadow: var(--shadow-card);
 }
 .macro-frame img { position: absolute; width: 100%; height: 100%; object-fit: cover; }
-.macro-frame.crest img { transform: scale(2.6); transform-origin: 52% 26%; }
-.macro-frame.weave img { transform: scale(3.2); transform-origin: 50% 58%; }
+.macro-frame.crest img { transform: scale(2.8); transform-origin: 62% 32%; }
+.macro-frame.weave img { transform: scale(3.2); transform-origin: 38% 30%; }
 .macro-frame figcaption {
   position: absolute; left: 0; right: 0; bottom: 0; z-index: 2;
   padding: 0.8rem 1.1rem; font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase;
@@ -541,8 +541,8 @@ body.nav-open .announce { display: none; }
 @media (max-width: 880px) { .pdp-gallery { position: static; } }
 .pdp-shot { position: relative; aspect-ratio: 4/5; overflow: hidden; background: var(--stone-light); box-shadow: var(--shadow-card); }
 .pdp-shot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; }
-.pdp-shot.detail img { transform: scale(2.4); transform-origin: 52% 26%; }
-.pdp-shot.texture img { transform: scale(3.4); transform-origin: 50% 60%; }
+.pdp-shot.detail img { transform: scale(2.6); transform-origin: 62% 32%; }
+.pdp-shot.texture img { transform: scale(3.4); transform-origin: 38% 30%; }
 .pdp-shot .ph-note {
   position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
   font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(20,36,42,0.4); text-align: center; padding: 1rem;
