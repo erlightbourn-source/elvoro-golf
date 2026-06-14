@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /coming-soon.html
+
+Sitemap: https://erlightbourn-source.github.io/elvoro-golf/sitemap.xml
