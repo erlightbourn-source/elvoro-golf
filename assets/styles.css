@@ -394,10 +394,13 @@ body.nav-open .nav-toggle span:nth-child(3) { bottom: 50%; transform: translateY
 /* =========================================================
    REVEAL ANIMATION (subtle motion only)
    ========================================================= */
-.reveal { opacity: 0; transform: translateY(22px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
+.reveal { transition: opacity .9s var(--ease), transform .9s var(--ease); }
+/* Only hide reveal elements when JS is active to animate them in.
+   Without JS (no .js class) content stays fully visible. */
+.js .reveal { opacity: 0; transform: translateY(22px); }
 .reveal.in { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {
-  .reveal { opacity: 1; transform: none; transition: none; }
+  .js .reveal { opacity: 1; transform: none; transition: none; }
   html { scroll-behavior: auto; }
   .product-card:hover .product-shot img { transform: none; }
 }
