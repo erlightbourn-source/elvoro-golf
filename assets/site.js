@@ -137,6 +137,29 @@
     }
   }
 
+  /* ---- Ambient interlude video: defer load until near viewport ---- */
+  var ambient = document.querySelector(".ambient-video");
+  if (ambient) {
+    var noMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!noMotion) {
+      var startAmbient = function () {
+        if (ambient.dataset.started) return;
+        ambient.dataset.started = "1";
+        ambient.setAttribute("preload", "auto");
+        ambient.load();
+        var show = function () { ambient.classList.add("is-ready"); };
+        ambient.addEventListener("loadeddata", show, { once: true });
+        var p = ambient.play(); if (p && p.catch) p.catch(function () {});
+      };
+      if ("IntersectionObserver" in window) {
+        var ao = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) { if (e.isIntersecting) { startAmbient(); ao.disconnect(); } });
+        }, { rootMargin: "300px 0px" });
+        ao.observe(ambient);
+      } else { startAmbient(); }
+    }
+  }
+
   /* ---- Footer year ---- */
   document.querySelectorAll("[data-year]").forEach(function (el) {
     el.textContent = new Date().getFullYear();
