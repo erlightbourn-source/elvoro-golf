@@ -648,6 +648,8 @@ body.nav-open .announce { display: none; }
     linear-gradient(0deg, rgba(6,19,25,0.5), rgba(6,19,25,0.1) 55%);
 }
 .ambient-inner { position: relative; z-index: 2; text-align: center; width: 100%; }
+.ambient-inner .eyebrow,
+.ambient-inner .serif-quote { text-shadow: 0 2px 18px rgba(6,19,25,0.55); }
 .ambient-inner .serif-quote { max-width: 24ch; margin: 1rem auto 0; }
 @media (prefers-reduced-motion: reduce) {
   .ambient-video { display: none; }   /* fall back to the poster background image */
