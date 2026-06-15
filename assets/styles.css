@@ -263,11 +263,18 @@ body.nav-open .nav-toggle span:nth-child(3) { bottom: 50%; transform: translateY
   font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem);
   color: rgba(22,36,58,0.16); letter-spacing: 0.02em;
 }
-.product-card:nth-child(2) .product-shot { background: linear-gradient(170deg, #ece7d9, #cfc7b6); }
-.product-card:nth-child(3) .product-shot { background: linear-gradient(170deg, #1c4a4a, #0B232D); }
-.product-card:nth-child(1) .product-shot { background: linear-gradient(170deg, #14404A, #0B232D); }
-.product-shot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; transition: transform .9s var(--ease); }
-.product-card:hover .product-shot img { transform: scale(1.04); }
+/* Floating cut-out products on brand backgrounds (Adobe-removed bg).
+   Backgrounds chosen for contrast: dark polo on light, light polos on forest. */
+.product-card:nth-child(1) .product-shot { background: radial-gradient(120% 100% at 50% 18%, #F8F4EC 0%, #E7DECB 100%); } /* Evergreen (dark) on light */
+.product-card:nth-child(2) .product-shot { background: linear-gradient(165deg, #16404A 0%, #0B232D 100%); }                /* Coastal (white) on forest */
+.product-card:nth-child(3) .product-shot { background: linear-gradient(165deg, #16404A 0%, #0B232D 100%); }                /* Meridian (cream) on forest */
+.product-shot img {
+  position: absolute; inset: 7% 11%; width: 78%; height: 86%;
+  object-fit: contain; object-position: center;
+  filter: drop-shadow(0 16px 22px rgba(6,19,25,0.30));
+  transition: transform .8s var(--ease);
+}
+.product-card:hover .product-shot img { transform: translateY(-6px) scale(1.02); }
 .product-tag {
   position: absolute; top: 14px; left: 14px; z-index: 2;
   font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600;
