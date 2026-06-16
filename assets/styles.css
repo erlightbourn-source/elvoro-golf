@@ -388,8 +388,19 @@ body.nav-open .nav-toggle span:nth-child(3) { bottom: 50%; transform: translateY
     radial-gradient(120% 80% at 80% 10%, rgba(212,175,55,0.22), transparent 55%),
     linear-gradient(165deg, #16404A, #0B232D 50%, #061319);
 }
-.coming-media::after { content:""; position:absolute; inset:0; background: radial-gradient(130% 120% at 50% 40%, transparent 45%, rgba(8,14,24,0.6)); }
+/* Cinematic background video — fades in over the gradient fallback */
+.coming-video {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: center; z-index: 0;
+  opacity: 0; transition: opacity 1.4s var(--ease);
+}
+.coming-video.is-ready { opacity: 1; }
+.coming-media::after { content:""; position:absolute; inset:0; z-index: 1; background: radial-gradient(130% 120% at 50% 40%, transparent 40%, rgba(8,14,24,0.66)); }
+@media (prefers-reduced-motion: reduce) { .coming-video { display: none; } }
 .coming-inner { position: relative; z-index: 2; flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 6rem var(--gutter); }
+/* Keep copy legible over the bright moving dawn video */
+.coming-inner .display, .coming-inner .lede, .coming-inner .eyebrow,
+.coming-top, .coming-foot, .password-link { text-shadow: 0 2px 16px rgba(6,16,22,0.55); }
 .coming-inner .display { max-width: 18ch; }
 .coming-top { position: relative; z-index: 2; display: flex; justify-content: center; padding: 2rem; }
 .coming-foot { position: relative; z-index: 2; display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; padding: 2rem var(--gutter); font-size: 0.78rem; color: rgba(246,243,236,0.55); }

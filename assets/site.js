@@ -137,6 +137,21 @@
     }
   }
 
+  /* ---- Coming-soon / 404 background video: fade in, respect reduced motion ---- */
+  var comingVideo = document.querySelector(".coming-video");
+  if (comingVideo) {
+    var reduceMo = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduceMo) {
+      comingVideo.removeAttribute("autoplay");
+      comingVideo.pause && comingVideo.pause();
+    } else {
+      var showC = function () { comingVideo.classList.add("is-ready"); };
+      if (comingVideo.readyState >= 2) showC();
+      else comingVideo.addEventListener("loadeddata", showC, { once: true });
+      var pc = comingVideo.play && comingVideo.play(); if (pc && pc.catch) pc.catch(function () {});
+    }
+  }
+
   /* ---- Ambient interlude video: defer load until near viewport ---- */
   var ambient = document.querySelector(".ambient-video");
   if (ambient) {
