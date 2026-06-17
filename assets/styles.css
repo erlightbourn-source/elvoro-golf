@@ -248,7 +248,7 @@ body.nav-open .nav-toggle span:nth-child(3) { bottom: 50%; transform: translateY
 /* =========================================================
    PRODUCT GRID
    ========================================================= */
-.product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.4rem, 3vw, 2.4rem); }
+.product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(1.4rem, 3vw, 2.4rem); max-width: 760px; margin-inline: auto; }
 @media (max-width: 900px) { .product-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 560px) { .product-grid { grid-template-columns: 1fr; } }
 
