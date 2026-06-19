@@ -2,6 +2,25 @@
 (function () {
   "use strict";
 
+  /* ---- Analytics (privacy-conscious GA4) ----
+     Set GA_ID to your GA4 Measurement ID (looks like "G-ABC123XYZ") to turn it on.
+     Stays completely dormant until then, and never loads if the visitor has
+     Do-Not-Track enabled. IP anonymization is forced on. One line, every page. */
+  var GA_ID = "G-XXXXXXXXXX";
+  (function () {
+    var dnt = navigator.doNotTrack == "1" || window.doNotTrack == "1" || navigator.msDoNotTrack == "1";
+    if (!GA_ID || GA_ID.indexOf("XXXX") !== -1 || dnt) return;
+    var s = document.createElement("script");
+    s.async = true;
+    s.src = "https://www.googletagmanager.com/gtag/js?id=" + GA_ID;
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    window.gtag("js", new Date());
+    window.gtag("config", GA_ID, { anonymize_ip: true });
+  })();
+  function track(name, params) { if (window.gtag) window.gtag("event", name, params || {}); }
+
   /* ---- Header: solid on scroll ---- */
   var header = document.querySelector(".site-header");
   if (header) {
@@ -80,6 +99,8 @@
       if (form.dataset.product) payload.product = form.dataset.product;
       sendForm(payload).then(function () {
         if (note) note.textContent = "Thank you — you're on the list. We'll be in touch.";
+        track(form.dataset.product ? "notify_signup" : "list_signup",
+              form.dataset.product ? { product: form.dataset.product } : {});
         form.reset();
       }).catch(function () {
         if (note) note.textContent = "Something went wrong — please try again in a moment.";
@@ -114,6 +135,7 @@
       fields._template = "table";
       sendForm(fields).then(function () {
         if (note) note.textContent = "Message received. We'll reply within one business day.";
+        track("contact_submit", { topic: fields.topic || "General" });
         form.reset();
       }).catch(function () {
         if (note) note.textContent = "Something went wrong — please try again, or email us directly.";
