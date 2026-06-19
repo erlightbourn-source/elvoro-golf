@@ -97,10 +97,14 @@
         _template: "table"
       };
       if (form.dataset.product) payload.product = form.dataset.product;
+      var sizeEl = form.querySelector('select[name="size"]');
+      if (sizeEl && sizeEl.value) payload.size = sizeEl.value;
       sendForm(payload).then(function () {
         if (note) note.textContent = "Thank you — you're on the list. We'll be in touch.";
         track(form.dataset.product ? "notify_signup" : "list_signup",
-              form.dataset.product ? { product: form.dataset.product } : {});
+              form.dataset.product
+                ? { product: form.dataset.product, size: (sizeEl && sizeEl.value) || "unspecified" }
+                : {});
         form.reset();
       }).catch(function () {
         if (note) note.textContent = "Something went wrong — please try again in a moment.";
