@@ -80,6 +80,63 @@
     });
   }
 
+  /* ---- Mailing list — Mailchimp audience ----
+     Signups POST straight into a Mailchimp audience, so you have a real list to
+     broadcast from (campaigns + automations) — not just inbox forwards.
+
+     TO TURN IT ON — two values from your Mailchimp audience:
+       Audience → Signup forms → Embedded forms → Continue.
+       1) Copy the <form action="..."> URL into `action` below. It looks like:
+          https://elvoro.us21.list-manage.com/subscribe/post?u=abc123def&id=456ghi
+       2) In that same form's HTML there's a hidden anti-bot field near the end,
+          e.g. <input type="text" name="b_abc123def_456ghi" ...>. Copy that
+          field's name into `botField`.
+     Until `action` is filled in, signups fall back to the FormSubmit inbox below,
+     so the live site keeps working unchanged.
+
+     Optional: to store size + product interest, add audience merge fields with
+     tags SIZE and PRODUCT (Audience → Settings → Audience fields). If you skip
+     this, those values are simply ignored by Mailchimp. */
+  var MAILCHIMP = {
+    action: "",
+    botField: ""
+  };
+
+  // Mailchimp's endpoint sends no CORS headers, so a normal fetch() POST is
+  // blocked from a static site. JSONP against the post-json endpoint is the
+  // supported no-server pattern.
+  var mcSeq = 0;
+  function sendMailchimp(data) {
+    return new Promise(function (resolve, reject) {
+      if (!MAILCHIMP.action) { reject(new Error("Mailchimp not configured")); return; }
+      var url = MAILCHIMP.action.replace("/post?", "/post-json?").replace(/\/post$/, "/post-json");
+      var cb = "mc_cb_" + (++mcSeq);
+      var parts = ["EMAIL=" + encodeURIComponent(data.email)];
+      if (data.size) parts.push("SIZE=" + encodeURIComponent(data.size));
+      if (data.product) parts.push("PRODUCT=" + encodeURIComponent(data.product));
+      if (MAILCHIMP.botField) parts.push(encodeURIComponent(MAILCHIMP.botField) + "=");
+      parts.push("c=" + cb);
+      var script = document.createElement("script");
+      var done = false;
+      var cleanup = function () {
+        try { delete window[cb]; } catch (e) { window[cb] = undefined; }
+        if (script.parentNode) script.parentNode.removeChild(script);
+      };
+      window[cb] = function (resp) {
+        done = true; cleanup();
+        // {result:"success"|"error", msg:"…"}. An "already subscribed" error
+        // still means the address is on the list, so treat it as success.
+        var already = resp && resp.msg && /already/i.test(resp.msg);
+        if (resp && (resp.result === "success" || already)) resolve(resp);
+        else reject(new Error((resp && resp.msg) || "Subscription failed"));
+      };
+      script.onerror = function () { if (!done) { cleanup(); reject(new Error("Network error")); } };
+      script.src = url + (url.indexOf("?") === -1 ? "?" : "&") + parts.join("&");
+      document.head.appendChild(script);
+      setTimeout(function () { if (!done) { cleanup(); reject(new Error("Timeout")); } }, 10000);
+    });
+  }
+
   document.querySelectorAll("form[data-capture]").forEach(function (form) {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
@@ -89,22 +146,32 @@
       if (email && !email.checkValidity()) { email.reportValidity(); return; }
       if (btn) btn.disabled = true;
       if (note) note.textContent = "Adding you to the list…";
+
+      var product = form.dataset.product || "";
+      var sizeEl = form.querySelector('select[name="size"]');
+      var size = (sizeEl && sizeEl.value) || "";
+
+      // Same payload the inbox has always received — kept as a live notification
+      // when Mailchimp is on, and the full fallback when it isn't configured yet.
       var payload = {
         email: email.value,
-        _subject: form.dataset.product
-          ? "Elvoro Golf — notify request: " + form.dataset.product
+        _subject: product
+          ? "Elvoro Golf — notify request: " + product
           : "Elvoro Golf — new mailing list signup",
         _template: "table"
       };
-      if (form.dataset.product) payload.product = form.dataset.product;
-      var sizeEl = form.querySelector('select[name="size"]');
-      if (sizeEl && sizeEl.value) payload.size = sizeEl.value;
-      sendForm(payload).then(function () {
+      if (product) payload.product = product;
+      if (size) payload.size = size;
+
+      var subscribe = MAILCHIMP.action
+        ? sendMailchimp({ email: email.value, size: size, product: product })
+            .then(function (r) { sendForm(payload).catch(function () {}); return r; })
+        : sendForm(payload);
+
+      subscribe.then(function () {
         if (note) note.textContent = "Thank you — you're on the list. We'll be in touch.";
-        track(form.dataset.product ? "notify_signup" : "list_signup",
-              form.dataset.product
-                ? { product: form.dataset.product, size: (sizeEl && sizeEl.value) || "unspecified" }
-                : {});
+        track(product ? "notify_signup" : "list_signup",
+              product ? { product: product, size: size || "unspecified" } : {});
         form.reset();
       }).catch(function () {
         if (note) note.textContent = "Something went wrong — please try again in a moment.";
