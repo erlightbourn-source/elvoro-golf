@@ -159,7 +159,8 @@ h3 { font-size: clamp(1.4rem, 2.4vw, 1.9rem); }
   content: ""; position: absolute; left: 0; bottom: 0; height: 1px; width: 0;
   background: currentColor; transition: width .3s var(--ease);
 }
-.nav-link:hover::after, .nav-link[aria-current="page"]::after { width: 100%; }
+/* [aria-current] matches both "page" (the page itself) and "true" (its section, e.g. Shop on a product page) */
+.nav-link:hover::after, .nav-link[aria-current]::after { width: 100%; }
 
 .nav-toggle { display: none; width: 30px; height: 18px; position: relative; }
 .nav-toggle span {
