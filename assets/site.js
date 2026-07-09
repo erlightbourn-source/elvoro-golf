@@ -143,6 +143,14 @@
       var note = form.querySelector(".form-success");
       var email = form.querySelector('input[type="email"]');
       var btn = form.querySelector('button[type="submit"]');
+      var honeypot = form.querySelector('input[name="company"]');
+      // Bots fill the hidden field — pretend success, send nothing (mirrors the
+      // contact form; the signup forms are the most bot-targeted surface).
+      if (honeypot && honeypot.value) {
+        if (note) note.textContent = "Thank you — you're on the list. We'll be in touch.";
+        form.reset();
+        return;
+      }
       if (email && !email.checkValidity()) { email.reportValidity(); return; }
       if (btn) btn.disabled = true;
       if (note) note.textContent = "Adding you to the list…";

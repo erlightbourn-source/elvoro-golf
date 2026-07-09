@@ -95,6 +95,8 @@
               <input type="email" name="email" placeholder="Email address" aria-label="Email address" required />
               <button type="submit">Notify Me</button>
             </div>
+            <!-- Honeypot for spam protection -->
+            <input type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px" />
             <label class="size-pref">Your size
               <select name="size">
                 <option value="">Select…</option>
