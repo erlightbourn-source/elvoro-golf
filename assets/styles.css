@@ -222,6 +222,9 @@ body.nav-open .nav-toggle span:nth-child(3) { bottom: 50%; transform: translateY
 .hero .display { max-width: 16ch; }
 .hero .lede { color: rgba(246,243,236,0.82); margin-top: 1.6rem; }
 .hero-cta { margin-top: 2.6rem; display: flex; gap: 1rem; flex-wrap: wrap; }
+.hero-capture { margin-top: 2rem; max-width: 480px; }
+.hero-capture-label { display: block; font-size: 0.85rem; letter-spacing: 0.03em; color: rgba(246,243,236,0.85); margin-bottom: 0.55rem; }
+.hero-capture .field-row { margin-top: 0; }
 .hero-scroll {
   position: absolute; right: var(--gutter); bottom: clamp(4rem, 9vh, 8rem); z-index: 3;
   writing-mode: vertical-rl; font-size: 0.68rem; letter-spacing: 0.24em; text-transform: uppercase;

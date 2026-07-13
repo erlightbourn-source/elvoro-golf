@@ -169,7 +169,7 @@
         : sendForm(payload);
 
       subscribe.then(function () {
-        if (note) note.textContent = "Thank you — you're on the list. We'll be in touch.";
+        if (note) note.textContent = "You're on the list — we'll email you before Drop One opens, with your 25% founding-member code.";
         track(product ? "notify_signup" : "list_signup",
               product ? { product: product, size: size || "unspecified" } : {});
         form.reset();
