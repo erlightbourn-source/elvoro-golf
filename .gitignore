@@ -7,3 +7,6 @@ Thumbs.db
 
 # Manual dry-run sentinel for the scheduled routines (never commit)
 .testrun
+
+# CNAME held out of deploy until Cloudflare DNS is wired (else GH Pages redirects to a dead domain)
+CNAME
