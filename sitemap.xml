@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://erlightbourn-source.github.io/elvoro-golf/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://erlightbourn-source.github.io/elvoro-golf/shop.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://erlightbourn-source.github.io/elvoro-golf/product-evergreen.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://erlightbourn-source.github.io/elvoro-golf/product-meridian.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://erlightbourn-source.github.io/elvoro-golf/fit-fabric.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://erlightbourn-source.github.io/elvoro-golf/about.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://erlightbourn-source.github.io/elvoro-golf/contact.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://erlightbourn-source.github.io/elvoro-golf/policies.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://elvorogolf.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://elvorogolf.com/shop.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://elvorogolf.com/product-evergreen.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://elvorogolf.com/product-meridian.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://elvorogolf.com/fit-fabric.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://elvorogolf.com/journal.html</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://elvorogolf.com/about.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://elvorogolf.com/contact.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://elvorogolf.com/policies.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
 </urlset>
