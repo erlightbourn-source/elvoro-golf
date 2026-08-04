@@ -1,0 +1,5 @@
+# Security contact for elvorogolf.com
+Contact: https://elvorogolf.com/contact.html
+Expires: 2027-08-03T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://elvorogolf.com/.well-known/security.txt
