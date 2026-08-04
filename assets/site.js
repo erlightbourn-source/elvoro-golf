@@ -63,7 +63,7 @@
 
   /* ---- Email capture / forms — delivered via FormSubmit.co ---- */
   /* FormSubmit random-string alias — hides the destination inbox from scrapers */
-  var FORM_ENDPOINT = "https://formsubmit.co/ajax/d32e4dad5c35cab7cb74c858a6943793";
+  var FORM_ENDPOINT = "https://formsubmit.co/ajax/erlightbourn@gmail.com";
 
   function sendForm(payload) {
     return fetch(FORM_ENDPOINT, {
