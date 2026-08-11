@@ -232,7 +232,12 @@ body.nav-open .nav-toggle span:nth-child(3) { bottom: 50%; transform: translateY
   color: rgba(246,243,236,0.6); display: flex; align-items: center; gap: 1rem;
 }
 .hero-scroll::after { content: ""; width: 1px; height: 56px; background: rgba(246,243,236,0.4); }
-@media (max-width: 720px) { .hero-scroll { display: none; } }
+@media (max-width: 720px) {
+  .hero-scroll { display: none; }
+  /* Keep the kicker/H1 clear of the fixed announce+header stack (~122px tall)
+     with >=16px breathing room; desktop already clears it naturally. */
+  .hero-inner { padding-top: 140px; }
+}
 
 /* =========================================================
    MARQUEE / VALUE STRIP
