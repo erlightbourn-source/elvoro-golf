@@ -211,9 +211,10 @@ body.nav-open .nav-toggle span:nth-child(3) { bottom: 50%; transform: translateY
   .hero-media img { animation: none; }
   .hero-media video { display: none; }  /* fall back to the still image */
 }
-.hero-media::after { /* scrim: left-side darkening for copy + vignette for depth */
+.hero-media::after { /* scrim: top band for nav legibility, left darkening for copy, vignette for depth */
   content: ""; position: absolute; inset: 0; z-index: 2;
   background:
+    linear-gradient(180deg, rgba(6,19,25,0.62) 0%, rgba(6,19,25,0.28) 12%, rgba(6,19,25,0) 26%),
     linear-gradient(90deg, rgba(6,19,25,0.72) 0%, rgba(6,19,25,0.35) 38%, rgba(6,19,25,0) 65%),
     linear-gradient(0deg, rgba(6,19,25,0.65) 0%, rgba(6,19,25,0) 38%),
     radial-gradient(130% 120% at 50% 30%, transparent 40%, rgba(8,14,24,0.45) 100%);
@@ -548,6 +549,9 @@ body.nav-open .announce { display: none; }
 
 /* ---- Fabric macro section ---- */
 .macro-duo { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1rem, 2.5vw, 2rem); }
+.macro-duo.macro-trio { grid-template-columns: 1fr 1fr 1fr; }
+.macro-frame.pique img { transform: scale(3.2); transform-origin: 50% 70%; }
+.macro-frame.pique figcaption { background: linear-gradient(transparent, rgba(6,19,25,0.88) 55%); }
 .macro-frame {
   position: relative; aspect-ratio: 4/3; overflow: hidden;
   background: var(--navy-deep); box-shadow: var(--shadow-card);
@@ -560,7 +564,7 @@ body.nav-open .announce { display: none; }
   padding: 0.8rem 1.1rem; font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase;
   color: rgba(246,242,232,0.85); background: linear-gradient(transparent, rgba(6,19,25,0.72));
 }
-@media (max-width: 680px) { .macro-duo { grid-template-columns: 1fr; } }
+@media (max-width: 680px) { .macro-duo, .macro-duo.macro-trio { grid-template-columns: 1fr; } }
 
 /* ---- Founder block ---- */
 .founder-quote { border-left: 2px solid var(--gold); padding-left: clamp(1.4rem, 3vw, 2.4rem); }
