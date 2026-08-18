@@ -126,21 +126,20 @@ h3 { font-size: clamp(1.4rem, 2.4vw, 1.9rem); }
   position: fixed; inset: 0 0 auto 0; z-index: 100;
   display: flex; align-items: center; justify-content: space-between;
   padding: 1.4rem var(--gutter);
-  transition: background .4s var(--ease), padding .4s var(--ease), box-shadow .4s var(--ease);
-}
-.site-header.is-solid {
+  /* Solid from the top — no see-through bar over the hero (Evan 2026-08-12). */
   background: rgba(246,243,236,0.92);
   backdrop-filter: saturate(140%) blur(12px);
   box-shadow: 0 1px 0 var(--line);
-  padding-block: 1rem;
+  transition: background .4s var(--ease), padding .4s var(--ease), box-shadow .4s var(--ease);
 }
-/* When hero is dark, header text is light until scrolled */
+.site-header.is-solid {
+  padding-block: 1rem;
+  box-shadow: 0 4px 18px rgba(20,30,48,0.10);
+}
+/* Header is opaque cream at all scroll positions → text stays navy, even over the dark hero. */
 .site-header.on-dark .nav-link,
 .site-header.on-dark .brand,
-.site-header.on-dark .nav-toggle span { color: var(--off-white); }
-.site-header.on-dark.is-solid .nav-link,
-.site-header.on-dark.is-solid .brand,
-.site-header.on-dark.is-solid .nav-toggle span { color: var(--navy); }
+.site-header.on-dark .nav-toggle span { color: var(--navy); }
 
 .brand {
   font-family: var(--serif); font-size: 1.55rem; font-weight: 600;
