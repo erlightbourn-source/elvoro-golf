@@ -143,6 +143,13 @@
       var note = form.querySelector(".form-success");
       var email = form.querySelector('input[type="email"]');
       var btn = form.querySelector('button[type="submit"]');
+      var honeypot = form.querySelector('input[name="company"]');
+      // Bots fill the hidden field — pretend success, send nothing.
+      if (honeypot && honeypot.value) {
+        if (note) note.textContent = "You're on the list — we'll email you before Drop One opens, with your 25% founding-member code.";
+        form.reset();
+        return;
+      }
       if (email && !email.checkValidity()) { email.reportValidity(); return; }
       if (btn) btn.disabled = true;
       if (note) note.textContent = "Adding you to the list…";
