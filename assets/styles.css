@@ -368,6 +368,9 @@ body.nav-open .nav-toggle span:nth-child(3) { bottom: 50%; transform: translateY
 .field-row input:focus { outline: none; border-color: var(--off-white); }
 .field-row button { border: 1px solid var(--off-white); background: var(--off-white); color: var(--navy); padding-inline: 1.6rem; letter-spacing: 0.14em; text-transform: uppercase; font-size: 0.78rem; font-weight: 600; transition: background .3s var(--ease), color .3s var(--ease); }
 .field-row button:hover { background: transparent; color: var(--off-white); }
+/* 2026-09-06 audit: on phones the CTA wrapped to three lines ("GET / EARLY / ACCESS"); keep it one line, let the input flex. */
+.field-row button { white-space: nowrap; flex: 0 0 auto; }
+.field-row input { min-width: 0; }
 .form-note { font-size: 0.78rem; color: rgba(246,243,236,0.55); margin-top: 1rem; }
 .form-success { color: var(--olive-soft); font-size: 0.95rem; margin-top: 1rem; min-height: 1.4em; }
 
