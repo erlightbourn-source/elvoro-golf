@@ -223,13 +223,24 @@
     });
   });
 
-  /* ---- Hero video: fade in once it can render, only if motion is allowed ---- */
+  /* ---- Hero video: fade in once it can render, only if motion is allowed.
+     Skipped on small screens and under Data Saver: the ~1.2MB film isn't
+     worth it there, so the <source> is dropped (aborting any fetch already
+     under way) and the poster still is shown in its place. ---- */
   var heroVideo = document.querySelector(".hero-video");
   if (heroVideo) {
     var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var wideEnough = !window.matchMedia || window.matchMedia("(min-width: 720px)").matches;
+    var saveData = !!(navigator.connection && navigator.connection.saveData);
     if (reduceMotion) {
       heroVideo.removeAttribute("autoplay");
       heroVideo.pause && heroVideo.pause();
+    } else if (!wideEnough || saveData) {
+      heroVideo.removeAttribute("autoplay");
+      heroVideo.pause && heroVideo.pause();
+      while (heroVideo.firstElementChild) heroVideo.removeChild(heroVideo.firstElementChild);
+      heroVideo.load();
+      heroVideo.classList.add("is-ready"); /* no frame to show, so the poster paints */
     } else {
       var reveal = function () { heroVideo.classList.add("is-ready"); };
       if (heroVideo.readyState >= 2) reveal();
