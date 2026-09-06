@@ -11,7 +11,7 @@
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
   <meta name="theme-color" content="#0B232D" />
-  <link rel="preload" as="image" href="assets/hero.jpg" fetchpriority="high" />
+  <link rel="preload" as="image" href="assets/hero.webp" type="image/webp" fetchpriority="high" />
   <link rel="canonical" href="https://elvorogolf.com/" />
   <meta property="og:site_name" content="Elvoro Golf" />
   <meta property="og:type" content="website" />
@@ -60,10 +60,14 @@
   <!-- ============ HERO ============ -->
   <section id="main" class="hero">
     <div class="hero-media">
-      <img width="1920" height="1072" fetchpriority="high" src="assets/hero.jpg" alt="A golfer in a forest-green Elvoro polo walking the course at golden hour" />
-      <!-- Muted, looping ambient film. Poster is the matching still, so there's no pop;
-           falls back to the image on slow connections or prefers-reduced-motion. -->
-      <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="assets/hero.jpg" aria-hidden="true">
+      <picture>
+        <source type="image/webp" srcset="assets/hero.webp" />
+        <img width="1920" height="1072" fetchpriority="high" src="assets/hero.jpg" alt="A golfer in a forest-green Elvoro polo walking the course at golden hour" />
+      </picture>
+      <!-- Muted, looping ambient film. Poster is the matching still (same WebP the <picture>
+           already loaded, so no second fetch and no pop); falls back to the image on slow
+           connections or prefers-reduced-motion. -->
+      <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="assets/hero.webp" aria-hidden="true">
         <source src="assets/hero.mp4" type="video/mp4" />
       </video>
     </div>
