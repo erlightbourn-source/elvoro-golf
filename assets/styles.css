@@ -161,14 +161,16 @@ h3 { font-size: clamp(1.4rem, 2.4vw, 1.9rem); }
 /* [aria-current] matches both "page" (the page itself) and "true" (its section, e.g. Shop on a product page) */
 .nav-link:hover::after, .nav-link[aria-current]::after { width: 100%; }
 
-.nav-toggle { display: none; width: 30px; height: 18px; position: relative; }
+/* 44px hit area; the three bars stay 30x18, centred, so the icon looks the same
+   and sits where it did (the -7px pulls the extra width back to the gutter). */
+.nav-toggle { display: none; width: 44px; height: 44px; min-width: 44px; min-height: 44px; padding: 0; margin-inline-end: -7px; position: relative; }
 .nav-toggle span {
-  position: absolute; left: 0; height: 1.5px; width: 100%; background: var(--navy);
+  position: absolute; left: 7px; height: 1.5px; width: 30px; background: var(--navy);
   transition: transform .35s var(--ease), opacity .25s var(--ease);
 }
-.nav-toggle span:nth-child(1) { top: 0; }
+.nav-toggle span:nth-child(1) { top: 13px; }
 .nav-toggle span:nth-child(2) { top: 50%; transform: translateY(-50%); }
-.nav-toggle span:nth-child(3) { bottom: 0; }
+.nav-toggle span:nth-child(3) { bottom: 13px; }
 body.nav-open .nav-toggle span:nth-child(1) { top: 50%; transform: translateY(-50%) rotate(45deg); }
 body.nav-open .nav-toggle span:nth-child(2) { opacity: 0; }
 body.nav-open .nav-toggle span:nth-child(3) { bottom: 50%; transform: translateY(50%) rotate(-45deg); }
@@ -509,7 +511,7 @@ body.nav-open .nav-toggle span:nth-child(3) { bottom: 50%; transform: translateY
 }
 .announce .dot { color: var(--gold); }
 .announce strong { color: var(--gold); font-weight: 600; }
-@media (max-width: 720px) { .announce { gap: 1rem; font-size: 0.6rem; } .announce .hide-sm { display: none; } }
+@media (max-width: 720px) { .announce { gap: 1rem; font-size: 0.7rem; } .announce .hide-sm { display: none; } }
 
 .site-header { top: var(--announce-h); }
 body.nav-open .announce { display: none; }
