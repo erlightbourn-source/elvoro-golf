@@ -371,6 +371,7 @@ body.nav-open .nav-toggle span:nth-child(3) { bottom: 50%; transform: translateY
 /* 2026-09-06 audit: on phones the CTA wrapped to three lines ("GET / EARLY / ACCESS"); keep it one line, let the input flex. */
 .field-row button { white-space: nowrap; flex: 0 0 auto; }
 .field-row input { min-width: 0; }
+@media (max-width: 720px) { .field-row button { padding-inline: 1rem; letter-spacing: 0.1em; } }
 .form-note { font-size: 0.78rem; color: rgba(246,243,236,0.55); margin-top: 1rem; }
 .form-success { color: var(--olive-soft); font-size: 0.95rem; margin-top: 1rem; min-height: 1.4em; }
 
