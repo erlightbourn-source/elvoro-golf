@@ -161,9 +161,10 @@ h3 { font-size: clamp(1.4rem, 2.4vw, 1.9rem); }
 /* [aria-current] matches both "page" (the page itself) and "true" (its section, e.g. Shop on a product page) */
 .nav-link:hover::after, .nav-link[aria-current]::after { width: 100%; }
 
-/* 44px hit area; the three bars stay 30x18, centred, so the icon looks the same
-   and sits where it did (the -7px pulls the extra width back to the gutter). */
-.nav-toggle { display: none; width: 44px; height: 44px; min-width: 44px; min-height: 44px; padding: 0; margin-inline-end: -7px; position: relative; }
+/* 44px hit area; the three bars stay 30x18, centred, and the negative margins
+   keep the button in the same 30x18 layout slot so the icon and header height
+   are exactly what they were. */
+.nav-toggle { display: none; width: 44px; height: 44px; min-width: 44px; min-height: 44px; padding: 0; margin: -13px -7px -13px 0; position: relative; }
 .nav-toggle span {
   position: absolute; left: 7px; height: 1.5px; width: 30px; background: var(--navy);
   transition: transform .35s var(--ease), opacity .25s var(--ease);
