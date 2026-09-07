@@ -9,11 +9,11 @@ Prefer specifics over abstract praise: "no loud logos," "tailored fit," "fabric 
 
 ## Stack / deploy
 - Static HTML/CSS/JS, no build. Single `assets/styles.css` (token-driven `:root`) + `assets/site.js`.
-- Hosted on GitHub Pages from `main` root; deploy = commit + push, then the Pages build serves it (verify live with curl, allow CDN propagation).
-- Live: https://erlightbourn-source.github.io/elvoro-golf/
+- Hosted on GitHub Pages from `main` root, served under the custom domain via `CNAME`; deploy = commit + push, then the Pages build serves it (verify live with curl, allow CDN propagation).
+- Live: https://elvorogolf.com/ (custom domain, HTTPS enforced — confirmed via `gh api repos/.../pages` 2026-09-07; the old `erlightbourn-source.github.io/elvoro-golf/` project-page URL is no longer how the site is served, don't use root-relative `/elvoro-golf/`-prefixed paths anywhere).
 
 ## Current state (pre-launch)
 - Two-shirt Drop One: Evergreen + Meridian, $60 each, shipping included.
 - Waitlist only (no checkout). Email capture via FormSubmit alias → Gmail; size captured on PDP notify forms.
 - GA4 wired in `site.js`, dormant until a real `GA_ID` is set.
-- Open to the user: real launch date, launch discount %, founder identity + fabric specs, GA Measurement ID, domain purchase, $60-vs-positioning call.
+- Domain purchased and live (elvorogolf.com, CNAME + GitHub Pages custom domain). Still open to the user: real launch date, launch discount %, founder identity + fabric specs, GA Measurement ID, $60-vs-positioning call.
