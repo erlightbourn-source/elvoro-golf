@@ -10,3 +10,10 @@ Thumbs.db
 
 # CNAME held out of deploy until Cloudflare DNS is wired (else GH Pages redirects to a dead domain)
 CNAME
+
+# Internal docs live in .claude/ (local-only). GitHub Pages serves every tracked file,
+# so agent notes, setup docs and unreleased marketing never go in the published tree.
+/CLAUDE.md
+/README.md
+/MAILCHIMP-SETUP.md
+/marketing/*.md
