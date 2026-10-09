@@ -80,6 +80,69 @@
     });
   }
 
+  /* ---- Signup attribution (first touch) ----
+     Records where a visitor first came from, once, on page load, and sends it with
+     every signup. Order: utm_source/utm_medium/utm_campaign, else the external
+     referrer host ("ref:<host>"), else "direct". Kept as "ev_src" in sessionStorage
+     and localStorage (30 days), no cookies, no third-party calls. A later visit
+     never overwrites an earlier real touch; "direct" is never stored, so a first
+     visit without params does not block a real source on the next one.
+     Same shape as the Travel & Finance Tips tf_src signup attribution. */
+  var SRC_KEY = "ev_src";
+  var SRC_TTL = 30 * 864e5;
+  var memSrc = null; /* in-page fallback when storage is blocked */
+
+  function cleanSrcPart(v) {
+    return String(v || "").toLowerCase().trim().replace(/[^a-z0-9_.-]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 40);
+  }
+  /* Whole stored value: same charset as the parts plus "/" and ":" joiners, hard length cap. */
+  function cleanSrc(v) {
+    return String(v || "").toLowerCase().trim().replace(/[^a-z0-9_.:\/-]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 128);
+  }
+  function readStoredSrc(store) {
+    try {
+      var saved = JSON.parse(store.getItem(SRC_KEY) || "null");
+      if (!saved || typeof saved.src !== "string") return null;
+      var age = Date.now() - saved.t;
+      var src = cleanSrc(saved.src);
+      if (src && age >= 0 && age < SRC_TTL) return { src: src, t: saved.t };
+    } catch (e) {}
+    return null;
+  }
+  function currentTouch() {
+    try {
+      var q = new URLSearchParams(window.location.search);
+      var parts = ["utm_source", "utm_medium", "utm_campaign"].map(function (k) { return cleanSrcPart(q.get(k)); });
+      if (parts[0]) return parts.filter(Boolean).join("/");
+    } catch (e) {}
+    try {
+      var ref = document.referrer ? new URL(document.referrer).hostname.toLowerCase().replace(/^www\./, "") : "";
+      var self = String(window.location.hostname || "").toLowerCase().replace(/^www\./, "");
+      if (ref && ref !== self) return "ref:" + cleanSrcPart(ref);
+    } catch (e) {}
+    return "";
+  }
+  function captureFirstTouch() {
+    var existing = null;
+    try { existing = readStoredSrc(window.sessionStorage) || readStoredSrc(window.localStorage); } catch (e) {}
+    if (!existing) {
+      var touch = currentTouch();
+      if (touch) existing = { src: touch, t: Date.now() };
+    }
+    if (!existing) return;
+    memSrc = existing;
+    var json = JSON.stringify(existing);
+    try { window.sessionStorage.setItem(SRC_KEY, json); } catch (e) {}
+    try { window.localStorage.setItem(SRC_KEY, json); } catch (e) {}
+  }
+  function signupSource() {
+    var saved = null;
+    try { saved = readStoredSrc(window.sessionStorage) || readStoredSrc(window.localStorage); } catch (e) {}
+    saved = saved || memSrc;
+    return saved ? saved.src : "direct";
+  }
+  captureFirstTouch();
+
   /* ---- Mailing list — Mailchimp audience ----
      Signups POST straight into a Mailchimp audience, so you have a real list to
      broadcast from (campaigns + automations) — not just inbox forwards.
@@ -169,6 +232,8 @@
       };
       if (product) payload.product = product;
       if (size) payload.size = size;
+      payload.source = signupSource();
+      payload.page = String(window.location.pathname || "").slice(0, 120);
 
       var subscribe = MAILCHIMP.action
         ? sendMailchimp({ email: email.value, size: size, product: product })
