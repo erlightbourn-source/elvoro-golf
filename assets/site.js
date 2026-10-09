@@ -95,10 +95,17 @@
   function cleanSrcPart(v) {
     return String(v || "").toLowerCase().trim().replace(/[^a-z0-9_.-]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 40);
   }
+  /* Whole stored value: same charset as the parts plus "/" and ":" joiners, hard length cap. */
+  function cleanSrc(v) {
+    return String(v || "").toLowerCase().trim().replace(/[^a-z0-9_.:\/-]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 128);
+  }
   function readStoredSrc(store) {
     try {
       var saved = JSON.parse(store.getItem(SRC_KEY) || "null");
-      if (saved && typeof saved.src === "string" && saved.src && Date.now() - (saved.t || 0) < SRC_TTL) return saved;
+      if (!saved || typeof saved.src !== "string") return null;
+      var age = Date.now() - saved.t;
+      var src = cleanSrc(saved.src);
+      if (src && age >= 0 && age < SRC_TTL) return { src: src, t: saved.t };
     } catch (e) {}
     return null;
   }
@@ -226,7 +233,7 @@
       if (product) payload.product = product;
       if (size) payload.size = size;
       payload.source = signupSource();
-      payload.page = window.location.pathname;
+      payload.page = String(window.location.pathname || "").slice(0, 120);
 
       var subscribe = MAILCHIMP.action
         ? sendMailchimp({ email: email.value, size: size, product: product })
