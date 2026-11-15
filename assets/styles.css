@@ -672,7 +672,7 @@ body.nav-open .announce { display: none; }
    ACCESSIBILITY — keyboard focus + skip link
    ========================================================= */
 :where(a, button, input, textarea, select, [tabindex]):focus-visible {
-  outline: 2px solid var(--gold);
+  outline: 2px solid var(--navy); /* E8: navy on light surfaces (gold was 1.88:1 on cream); gold on dark below */
   outline-offset: 3px;
   border-radius: 1px;
 }
@@ -680,12 +680,20 @@ body.nav-open .announce { display: none; }
 .site-header.on-dark a:focus-visible,
 .hero a:focus-visible,
 .site-footer a:focus-visible,
+.site-header.on-dark :focus-visible,
+.hero :focus-visible,
+.coming :focus-visible,
+.site-footer :focus-visible,
+.pdp-sticky :focus-visible,
 .capture :focus-visible { outline-color: var(--gold); }
 /* Form fields already restyle border on focus; add a ring for keyboard users */
 .field-row input:focus-visible,
 .form input:focus-visible,
 .form textarea:focus-visible,
-.form select:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.form select:focus-visible { outline: 2px solid var(--navy); outline-offset: 2px; }
+.hero .field-row input:focus-visible,
+.coming .field-row input:focus-visible,
+.capture .field-row input:focus-visible { outline-color: var(--gold); }
 
 .skip-link {
   position: absolute; left: 50%; top: 0; transform: translate(-50%, -120%);
