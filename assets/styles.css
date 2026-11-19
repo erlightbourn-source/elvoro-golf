@@ -676,11 +676,9 @@ body.nav-open .announce { display: none; }
   outline-offset: 3px;
   border-radius: 1px;
 }
-/* On dark hero/footer, keep the gold ring but lift it */
-.site-header.on-dark a:focus-visible,
+/* On dark hero/footer, keep the gold ring but lift it. E8 r3: .site-header.on-dark is a CREAM surface, so it keeps the navy ring */
 .hero a:focus-visible,
 .site-footer a:focus-visible,
-.site-header.on-dark :focus-visible,
 .hero :focus-visible,
 .coming :focus-visible,
 .site-footer :focus-visible,
@@ -702,6 +700,7 @@ body.nav-open .announce { display: none; }
   border: 1px solid var(--gold); transition: transform .2s var(--ease);
 }
 .skip-link:focus { transform: translate(-50%, 0.5rem); }
+.skip-link:focus, .skip-link:focus-visible { outline-color: var(--gold); } /* E8 r3: navy skip-link bg, gold ring (navy ring was 1.16:1) */
 
 /* =========================================================
    CINEMATIC AMBIENT INTERLUDE (aerial video band)
